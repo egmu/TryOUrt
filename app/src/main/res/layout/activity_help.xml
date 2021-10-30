@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/custom1"
+    android:layout_height="match_parent"
+    tools:context=".HelpActivity"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="#51FFFFFF"
+        >
+        <ImageView
+            android:id="@+id/GfG_logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/logo4" />
+    <TextView
+        android:id="@+id/help"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/cara_menggunakan_aplikasi_ini"
+        android:textAlignment="center"
+        android:textColor="@color/red"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="49dp" />
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="30dp"
+        android:gravity="left"
+        android:text="@string/_1_masukkan_angka_1_serta_angka_ke_2"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/help"
+        tools:ignore="InvalidId,MissingConstraints,NotSibling"
+        tools:layout_editor_absoluteX="216dp" />
+
+    <TextView
+        android:id="@+id/text12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:gravity="left"
+        android:text="@string/_2_masukkan_tebakan_anda"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        tools:ignore="MissingConstraints,NotSibling"
+        tools:layout_editor_absoluteX="0dp" />
+    <TextView
+        android:id="@+id/text13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:gravity="left"
+        android:text="@string/klik_taombol_cek_untukmengecek_jawaban_anda"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        app:layout_constraintTop_toBottomOf="@+id/text12"
+        tools:ignore="MissingConstraints,NotSibling"
+        tools:layout_editor_absoluteX="0dp" />
+    <TextView
+        android:id="@+id/text14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:gravity="left"
+        android:text="@string/klik_taombol_bantuan_untuk_mengetahui_jawaban_yang_benar"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        app:layout_constraintTop_toBottomOf="@+id/text13"
+        tools:ignore="MissingConstraints,NotSibling"
+        tools:layout_editor_absoluteX="0dp" />
+    <TextView
+        android:id="@+id/text15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:text="@string/klik_taombol_lanjut_untuk_menyimpan_data"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        app:layout_constraintTop_toBottomOf="@+id/text14"
+        tools:ignore="MissingConstraints,NotSibling"
+        tools:layout_editor_absoluteX="0dp" />
+    <TextView
+        android:id="@+id/text16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:gravity="left"
+        android:text="@string/klik_taombol_selesai_untuk_mmelihat_data_jawaban_anda"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        app:layout_constraintTop_toBottomOf="@+id/text15"
+        tools:ignore="MissingConstraints,NotSibling"
+        tools:layout_editor_absoluteX="0dp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
