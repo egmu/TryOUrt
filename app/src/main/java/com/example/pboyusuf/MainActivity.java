@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,16 +21,13 @@ import com.google.android.gms.ads.AdView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     Button btnLogOut;
     FirebaseAuth mAuth;
     DatabaseHelper myDb;
-
     private EditText edtAngka1,tvProcess, tvProcess2;
     private EditText edtAngka2;
     private TextView textHasil;
@@ -39,8 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView edt_jawaban;
     private DatabaseReference mNoteRef;
     //    Button btAdd;
-    ArrayList<String> arrayList = new ArrayList<>();
-    ArrayAdapter<String> adapter;
     private Button btnCek;
     private Button btAdd;
     int duration;
@@ -49,9 +43,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnViewAll;
     AdRequest adRequest;
     String toast;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
 
+    private long pressedTime;
     public MainActivity() {
     }
 
@@ -72,11 +65,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editName = (TextView) findViewById(R.id.show_tebak);
         btnAddData = (Button)findViewById(R.id.btnLanjut);
         btnViewAll = (Button)findViewById(R.id.btnSelesai);
+        tvProcess = findViewById(R.id.Edtangka1);
+        tvProcess2 = findViewById(R.id.Edtangka2);
+
         AddData();
 
         viewAll();
-
-
 
         btnCek.setOnClickListener(this);
         Button tombol = (Button) findViewById(R.id.menampilkanToast);
@@ -84,8 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         tombol.setOnClickListener(this);
         //Create random nomer
-        tvProcess = findViewById(R.id.Edtangka1);
-        tvProcess2 = findViewById(R.id.Edtangka2);
+
         //Create random
         Random myRandom = new Random();
         int num = myRandom.nextInt(101);//0-100
@@ -130,6 +123,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         else
 
                             Toast.makeText(MainActivity.this,"Data Not Iserted",Toast.LENGTH_LONG).show();
+
+                        Random myRandom = new Random();
+                        int num = myRandom.nextInt(101);//0-100
+                        int numa = myRandom.nextInt(101);//0-100
+                        tvProcess.setText(""+num);
+                        tvProcess2.setText(""+numa);
+
 
                     }
 
@@ -179,13 +179,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         }
 
-
-                        Random myRandom = new Random();
-                        int num = myRandom.nextInt(101);//0-100
-                        int numa = myRandom.nextInt(101);//0-100
-                        tvProcess.setText(""+num);
-                        tvProcess2.setText(""+numa);
-                        // show all data
 
                         showMessage("Data",buffer.toString());
 
@@ -273,8 +266,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             double hasil;
             hasil = Opetand2 + Opetand1;
             textHasil.setText(String.valueOf(hasil));
-
-
         }
     }
 
@@ -323,7 +314,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvProcess.setText(""+num);
         tvProcess2.setText(""+numa);
     }
+    @Override
+    public void onBackPressed() {
 
+        if (pressedTime + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed();
+            finish();
+        } else {
+            Toast.makeText(getBaseContext(), "Pencet lagi untuk Keluar..", Toast.LENGTH_SHORT).show();
+        }
+        pressedTime = System.currentTimeMillis();
+    }
 
 
 }

@@ -12,8 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PBOYusuf">
-        <activity android:name=".viewAll"></activity>
-        <activity android:name=".HasilLista" />
+
         <activity android:name=".About" />
         <activity android:name=".HelpActivity" />
         <activity android:name=".MainActivity" />
