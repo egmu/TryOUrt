@@ -1,6 +1,7 @@
 package com.example.pboyusuf;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -11,14 +12,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -30,20 +30,23 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     Button btnLogOut;
     FirebaseAuth mAuth;
+    DatabaseHelper myDb;
+
     private EditText edtAngka1,tvProcess, tvProcess2;
     private EditText edtAngka2;
     private TextView textHasil;
-    private TextView textTebak;
+    private TextView textTebak, editName;
     private TextView edt_jawaban;
     private DatabaseReference mNoteRef;
-//    Button btAdd;
+    //    Button btAdd;
     ArrayList<String> arrayList = new ArrayList<>();
     ArrayAdapter<String> adapter;
     private Button btnCek;
     private Button btAdd;
     int duration;
     AdView adBanner;
-
+    Button btnAddData;
+    Button btnViewAll;
     AdRequest adRequest;
     String toast;
     FirebaseDatabase firebaseDatabase;
@@ -65,10 +68,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textTebak = findViewById(R.id.show_tebak);
         btAdd = findViewById(R.id.btnLanjut);
         mAuth = FirebaseAuth.getInstance();
+        myDb = new DatabaseHelper(this);
+        editName = (TextView) findViewById(R.id.show_tebak);
+        btnAddData = (Button)findViewById(R.id.btnLanjut);
+        btnViewAll = (Button)findViewById(R.id.btnSelesai);
+        AddData();
+
+        viewAll();
 
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         btnCek.setOnClickListener(this);
         Button tombol = (Button) findViewById(R.id.menampilkanToast);
@@ -84,14 +92,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int numa = myRandom.nextInt(101);//0-100
         tvProcess.setText(""+num);
         tvProcess2.setText(""+numa);
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
+
         AdView bannerAdview = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         bannerAdview.loadAd(adRequest);
+
+
 
     }
 
@@ -103,6 +109,107 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
     }
+    public void AddData() {
+
+        btnAddData.setOnClickListener(
+
+                new View.OnClickListener() {
+
+                    @Override
+
+                    public void onClick(View v) {
+
+                        boolean isInserted = myDb.insertData(editName.getText().toString()
+
+                               );
+
+                        if(isInserted == true)
+
+                            Toast.makeText(MainActivity.this,"Lanjut",Toast.LENGTH_LONG).show();
+
+                        else
+
+                            Toast.makeText(MainActivity.this,"Data Not Iserted",Toast.LENGTH_LONG).show();
+
+                    }
+
+                }
+
+        );
+
+    }
+
+
+
+    //fungsi menampilkan data
+
+    public void viewAll() {
+
+        btnViewAll.setOnClickListener(
+
+                new View.OnClickListener(){
+
+                    @Override
+
+                    public void onClick(View v) {
+
+                        Cursor res = myDb.getAllData();
+
+                        if(res.getCount() == 0) {
+
+                            // show message
+
+                            showMessage("Error","Noting Found");
+
+                            return;
+
+                        }
+
+
+
+                        StringBuffer buffer = new StringBuffer();
+
+                        while (res.moveToNext() ) {
+
+                            buffer.append("Id :"+ res.getString(0)+"\n");
+
+                            buffer.append("JAWAB :"+ res.getString(1)+"\n");
+
+
+
+                        }
+
+
+                        Random myRandom = new Random();
+                        int num = myRandom.nextInt(101);//0-100
+                        int numa = myRandom.nextInt(101);//0-100
+                        tvProcess.setText(""+num);
+                        tvProcess2.setText(""+numa);
+                        // show all data
+
+                        showMessage("Data",buffer.toString());
+
+                    }
+
+                }
+
+        );
+
+    }
+    public void showMessage(String title, String Message){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setCancelable(true);
+
+        builder.setTitle(title);
+
+        builder.setMessage(Message);
+
+        builder.show();
+
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -148,8 +255,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 hasil = Opetand2 + Opetand1;
 //                textHasil.setText(String.valueOf(hasil));
                 if (Opetand3 == hasil){
-                textTebak.setText("Jawaban anda benar");
-            } else {
+                    textTebak.setText("Jawaban anda benar");
+                } else {
                     textTebak.setText("Jawaban anda salah");
                 }
             }
@@ -209,33 +316,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void Click1(View view) {
-//        textHasil = findViewById(R.id.show_result);
-//        EditText text1 = (EditText) findViewById(R.id.Edtangka1);
-//        EditText text2 = (EditText) findViewById(R.id.Edtangka2);
-//        EditText text3 = (EditText) findViewById(R.id.Edt_jawaban);
-//        EditText text4 = (EditText) findViewById(R.id.Edt_jawaban);
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        //Referensi database yang dituju
-//        DatabaseReference myRef = database.getReference("Hasil").child(text4.getText().toString());
-//
-//
-//        myRef.child("angka1").setValue(text1.getText().toString());
-//        myRef.child("angka2").setValue(text2.getText().toString());
-//        myRef.child("Nilai").setValue(text3.getText().toString());
-        mNoteRef = FirebaseDatabase.getInstance().getReference("Hasil");
-//        String key = mNoteRef.push().getKey();
-        EditText text1 = (EditText) findViewById(R.id.Edtangka1);
-        EditText text2 = (EditText) findViewById(R.id.Edtangka2);
-        EditText text3 = (EditText) findViewById(R.id.Edt_jawaban);
-        TextView text4 = (TextView) findViewById(R.id.show_result);
-        TextView text5 = (TextView) findViewById(R.id.show_tebak);
-        FirebaseDatabase myRef = FirebaseDatabase.getInstance();
-        DatabaseReference mNoteRef = myRef.getReference("Hasil").child(text3.getText().toString());
-//        mNoteRef.child("angka1").setValue(text1.getText().toString());
-//        mNoteRef.child("angka2").setValue(text2.getText().toString());
-        mNoteRef.child("Tebak").setValue(text3.getText().toString());
-        mNoteRef.child("Jawab").setValue(text5.getText().toString());
-        mNoteRef.child("Nilai").setValue(text4.getText().toString());
 
         Random myRandom = new Random();
         int num = myRandom.nextInt(101);//0-100
@@ -244,22 +324,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvProcess2.setText(""+numa);
     }
 
-    public void Selesai(View view) {
-        Intent i = new Intent(MainActivity.this,HasilLista.class);
-        startActivity(i);
-        finish();
-    }
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-//    public void create(String title, String content) {
-//
-//    }
+
 }

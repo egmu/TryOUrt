@@ -12,8 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PBOYusuf">
-        <activity android:name=".HasilLista"></activity>
-
+        <activity android:name=".viewAll"></activity>
+        <activity android:name=".HasilLista" />
         <activity android:name=".About" />
         <activity android:name=".HelpActivity" />
         <activity android:name=".MainActivity" />
@@ -32,6 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-2766965421563368~3984541187" />

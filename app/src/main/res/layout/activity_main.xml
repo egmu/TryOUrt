@@ -47,7 +47,7 @@
             android:text="@string/random_pertama"
             android:textColor="@color/black"
             android:textSize="20sp"
-             />
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -78,7 +78,8 @@
             android:layout_height="100dp"
             android:layout_marginTop="91dp"
             android:layout_weight="2"
-            android:inputType="numberDecimal"
+            android:editable="false"
+            android:inputType="none"
             android:background="@color/teal_200"
             android:gravity="center"
             android:hint="0"
@@ -105,13 +106,15 @@
             android:layout_height="100dp"
             android:layout_marginTop="91dp"
             android:layout_weight="2"
+            android:inputType="none"
             android:background="@color/teal_200"
             android:gravity="center"
             android:hint="0"
-            android:inputType="numberDecimal"
+
             android:textColor="@color/orange"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="Deprecated" />
     </LinearLayout>
 
 
@@ -130,18 +133,18 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <!--    <EditText-->
-<!--        android:id="@+id/Edtjawab"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_weight="2"-->
-<!--        android:background="@color/gold"-->
-<!--        android:gravity="center"-->
-<!--        android:textColor="@color/lime2"-->
-<!--        android:textSize="40sp"-->
-<!--        android:textStyle="bold"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textView2"-->
-<!--        tools:ignore="MissingConstraints"-->
-<!--        tools:layout_editor_absoluteX="0dp" />-->
+    <!--        android:id="@+id/Edtjawab"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_weight="2"-->
+    <!--        android:background="@color/gold"-->
+    <!--        android:gravity="center"-->
+    <!--        android:textColor="@color/lime2"-->
+    <!--        android:textSize="40sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/textView2"-->
+    <!--        tools:ignore="MissingConstraints"-->
+    <!--        tools:layout_editor_absoluteX="0dp" />-->
 
 
     <EditText
@@ -149,40 +152,30 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_weight="2"
-        android:background="@color/teal_200"
+        android:background="@drawable/rounded_edittext"
         android:gravity="center"
         android:hint="0"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:inputType="numberDecimal"
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />
 
-    <Button
-        android:id="@+id/button_result"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/gold"
-        android:text="cek"
-
-        android:textColor="@color/white"
-        app:backgroundTint="@color/purple_700"
-        app:layout_constraintTop_toBottomOf="@+id/Edt_jawaban"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="3dp" />
 
     <TextView
         android:id="@+id/show_result"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_weight="2"
+        android:background="@color/teal_200"
+        android:gravity="center"
         android:hint="Jawawban"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:gravity="center"
-        android:background="@color/teal_200"
-        app:layout_constraintTop_toBottomOf="@+id/show_tebak"
+        app:layout_constraintTop_toBottomOf="@+id/Edt_jawaban"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="2dp" />
     <TextView
@@ -196,21 +189,18 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/button_result"
+        app:layout_constraintTop_toBottomOf="@+id/show_result"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="2dp" />
 
-
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/linearLayout4"
         android:layout_width="409dp"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/show_result"
+        app:layout_constraintTop_toBottomOf="@+id/show_tebak"
         tools:ignore="DuplicateIds,MissingConstraints"
         tools:layout_editor_absoluteX="2dp">
-
-
         <Button
             android:id="@+id/btnLanjut"
             android:layout_width="185dp"
@@ -225,10 +215,50 @@
             android:textSize="12sp"
             android:textStyle="bold"
             app:backgroundTint="@color/orange" />
+        <Button
+            android:id="@+id/button_result"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+
+            android:layout_weight="2"
+            android:text="cek"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/purple_700"
+            app:layout_constraintTop_toBottomOf="@+id/Edt_jawaban"
+            tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/btnSelesai"
+            android:layout_width="185dp"
+            android:layout_height="50dp"
+            style="@android:style/Widget.Material.Light.Button"
+            android:layout_weight="2"
+            android:drawableRight="@drawable/ic_selesai"
+            android:gravity="center"
+            android:textAppearance="@android:style/TextAppearance.Material.Button"
+
+            android:text="@string/selesai"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/gold" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="409dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        tools:ignore="DuplicateIds,MissingConstraints"
+        tools:layout_editor_absoluteX="2dp">
+
 
         <Button
             android:id="@+id/menampilkanToast"
-            android:layout_width="185dp"
+            android:layout_width="200dp"
             android:layout_height="50dp"
 
             android:layout_weight="2"
@@ -240,21 +270,6 @@
             android:textStyle="bold"
             app:backgroundTint="@color/red"
             tools:ignore="MissingConstraints" />
-
-        <Button
-            android:id="@+id/btnSelesai"
-            android:layout_width="185dp"
-            android:layout_height="50dp"
-
-            android:layout_weight="2"
-            android:drawableRight="@drawable/ic_selesai"
-            android:gravity="center"
-            android:onClick="Selesai"
-            android:text="@string/selesai"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:backgroundTint="@color/gold" />
     </LinearLayout>
 
     <com.google.android.gms.ads.AdView

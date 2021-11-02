@@ -73,7 +73,8 @@
     <string name="not_registered_yet">Not registered yet</string>
     <string name="About_TryOUrt">Aplikasi TryOUrt adalah sebuah simple aplikasi tentang tebak angka, yag sangat mudah digunakan oleh segala usia, anak sampai lansia.</string>
     <string name="Youtube">Channel Youtube : <a href="https://www.youtube.com/c/DEVIL-X-Code">DEVIL-X-Code</a></string>
-    <string name="GitHub">Github           : <a href="https://github.com/egmu">Egmu</a></string>\
+    <string name="GitHub">Github           : <a href="https://github.com/egmu">Egmu</a></string>
+    \
     <string name="GitLab">GitLab           : <a href="https://gitlab.com/mkh.yusuf">Yusuf Rizal I </a></string>
     <string name="Blog">Website            : <a href="https://mytutoriakerenl.blogspot.com/">E.G.M.U_NoW  </a></string>
     <string name="nama_pembuat">Nama : Yusuf Rizal I</string>
