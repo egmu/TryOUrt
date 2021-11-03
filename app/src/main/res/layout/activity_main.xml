@@ -270,6 +270,7 @@
             android:textStyle="bold"
             app:backgroundTint="@color/red"
             tools:ignore="MissingConstraints" />
+
     </LinearLayout>
 
     <com.google.android.gms.ads.AdView
@@ -285,4 +286,5 @@
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
     </com.google.android.gms.ads.AdView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

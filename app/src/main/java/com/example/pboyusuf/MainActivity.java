@@ -28,10 +28,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnLogOut;
     FirebaseAuth mAuth;
     DatabaseHelper myDb;
-    private EditText edtAngka1,tvProcess, tvProcess2;
+    private EditText edtAngka1,tvProcess, tvProcess2 ;
     private EditText edtAngka2;
     private TextView textHasil;
-    private TextView textTebak, editName;
+    private TextView textTebak, editName, editTextId;
     private TextView edt_jawaban;
     private DatabaseReference mNoteRef;
     //    Button btAdd;
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnViewAll;
     AdRequest adRequest;
     String toast;
+    Button btnDelete;
 
     private long pressedTime;
     public MainActivity() {
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AddData();
 
         viewAll();
+        editTextId =(TextView) findViewById(R.id.show_result);
 
         btnCek.setOnClickListener(this);
         Button tombol = (Button) findViewById(R.id.menampilkanToast);
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
     }
+
     public void AddData() {
 
         btnAddData.setOnClickListener(

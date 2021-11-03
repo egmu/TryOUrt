@@ -33,8 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         etLoginPassword = findViewById(R.id.etLoginPassword);
         tvRegisterHere = findViewById(R.id.tvRegisterHere);
         btnLogin = findViewById(R.id.btnLogin);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         mAuth = FirebaseAuth.getInstance();
         btnLogin.setOnClickListener(view -> {
             LoginUser();
@@ -69,14 +68,5 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
 }
