@@ -18,7 +18,7 @@
 ```
 
 # Firebase
-```json
+```
 > Connect To Firebase untuk Auth serta Database Realtime
 > Pilih Tools Firebase
 > buka firebase console > Add Project > create project
